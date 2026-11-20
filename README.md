@@ -1,8 +1,8 @@
 # nat-detect
 
-NAT behavior detection per RFC 4787 / RFC 5780, implemented in Python, Go, Rust, and Node.js. Tests UDP mapping and filtering against a STUN server. No dependencies.
+NAT behavior detection per RFC 4787 / RFC 5780, implemented in Python, Go, Rust, Node.js, and C. Tests UDP mapping and filtering against a STUN server. No dependencies.
 
-All four programs do the same thing and print the same report, so use whichever language you prefer.
+All five programs do the same thing and print the same report, so use whichever language you prefer.
 
 | File | Language | Requires |
 |---|---|---|
@@ -10,8 +10,9 @@ All four programs do the same thing and print the same report, so use whichever 
 | `nat_detect.go` | Go | Go 1.18+ |
 | `nat_detect.rs` | Rust | Rust 1.65+ |
 | `nat_detect.js` | Node.js | Node.js 16+ |
+| `nat_detect.c` | C | C99 compiler, POSIX sockets (Linux, macOS) |
 
-Each program is a single file that uses only its language's standard library.
+Each program is a single file with no third-party dependencies.
 
 ## What it detects
 
@@ -53,6 +54,14 @@ rustc -O nat_detect.rs
 ```sh
 node nat_detect.js
 node nat_detect.js stun.example.com:3478
+```
+
+**C**
+
+```sh
+cc -O2 -Wall -Wextra -o nat_detect_c nat_detect.c
+./nat_detect_c
+./nat_detect_c stun.example.com:3478
 ```
 
 ### Example output
@@ -117,4 +126,4 @@ Each probe is retried, with a one-second wait per attempt.
 
 ## Status
 
-All four programs were tested against a local fake STUN server that implements the RFC 5780 attributes on loopback. That covers message building, parsing, and the test logic, but only for the "no NAT" case. They have not been verified against a real NAT or against the public server named above.
+All five programs were tested against a local fake STUN server that implements the RFC 5780 attributes on loopback. That covers message building, parsing, and the test logic, but only for the "no NAT" case. They have not been verified against a real NAT or against the public server named above.
