@@ -26,7 +26,7 @@ EI = "Endpoint-Independent"
 AD = "Address-Dependent"
 APD = "Address and Port-Dependent"
 
-DEFAULT_SERVER = "stunserver.stunprotocol.org:3478"
+DEFAULT_SERVER = "stunserver2025.stunprotocol.org:3478"
 
 
 def parse_addr(val, xor):
@@ -154,7 +154,7 @@ def main():
         print("Note:    mapped address equals local address, so no NAT was detected.")
     if other is None:
         sys.exit("The server did not send OTHER-ADDRESS, so it does not support RFC 5780. "
-                 "Use a server that does (for example coturn or stunserver.stunprotocol.org).")
+                 "Use a server that does (for example coturn or stunserver2025.stunprotocol.org).")
 
     mapping = detect_mapping(sock, server, mapped1, other)
     filtering = detect_filtering(server)
